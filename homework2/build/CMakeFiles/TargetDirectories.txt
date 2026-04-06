@@ -1,0 +1,4 @@
+/media/turing/文件/RegularAssignment/RobotSoftwareEngineering/HomeWork2/build/CMakeFiles/server.dir
+/media/turing/文件/RegularAssignment/RobotSoftwareEngineering/HomeWork2/build/CMakeFiles/client.dir
+/media/turing/文件/RegularAssignment/RobotSoftwareEngineering/HomeWork2/build/CMakeFiles/edit_cache.dir
+/media/turing/文件/RegularAssignment/RobotSoftwareEngineering/HomeWork2/build/CMakeFiles/rebuild_cache.dir
