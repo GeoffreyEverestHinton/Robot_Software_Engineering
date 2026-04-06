@@ -1,3 +1,0 @@
-/media/turing/文件/RegularAssignment/RobotSoftwareEngineering/HomeWork1/homework1/build/CMakeFiles/main.dir
-/media/turing/文件/RegularAssignment/RobotSoftwareEngineering/HomeWork1/homework1/build/CMakeFiles/edit_cache.dir
-/media/turing/文件/RegularAssignment/RobotSoftwareEngineering/HomeWork1/homework1/build/CMakeFiles/rebuild_cache.dir
