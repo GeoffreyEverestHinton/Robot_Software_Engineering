@@ -164,7 +164,7 @@ target\_link\_libraries(client pthread)
 
 
 * 操作系统：Ubuntu 24.04（或其他 Linux 发行版）
-* Cmake:3.28.3
+* cmake:3.28.3
 * 编译工具：g++
 * 依赖库：pthread
 
@@ -175,7 +175,7 @@ target\_link\_libraries(client pthread)
 ```
 //进入作业目录
 
-cd HomeWork2
+cd homework2
 
 //创建构建目录（推荐，避免污染源码）
 
@@ -185,9 +185,7 @@ mkdir build && cd build
 
 cmake ..
 
-//编译（-j4 表示4线程加速，可选）
-
-make -j4
+make 
 ```
 
 ### 运行步骤
@@ -199,7 +197,7 @@ make -j4
 
 
 ```
-cd HomeWork2/build
+cd homework2/build
 
 ./server
 ```
@@ -208,12 +206,12 @@ cd HomeWork2/build
 
 
 
-1. 启动客户端（终端 2）：
+2. 启动客户端（终端 2）：
 
 
 
 ```
-cd HomeWork2/build
+cd homework2/build
 
 ./client
 ```
@@ -222,7 +220,7 @@ cd HomeWork2/build
 
 
 
-1. 开始聊天：
+3. 开始聊天：
 
 * 服务端与客户端可互相发送文字消息
 
