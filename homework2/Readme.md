@@ -10,7 +10,7 @@
 
 
 ```
-HomeWork2/
+homework2/
 
 ├── server.cpp        # 服务端核心代码
 
@@ -130,27 +130,27 @@ connect(sock, (sockaddr \*)\&addr, sizeof(addr));   // 发起连接
 
 
 ```
-\# 最低CMake版本要求
+//最低CMake版本要求
 
 cmake\_minimum\_required(VERSION 3.10)
 
-\# 项目名称
+//项目名称
 
 project(ChatSystem)
 
-\# 指定C++标准（C++11支持std::thread）
+//指定C++标准（C++11支持std::thread）
 
 set(CMAKE\_CXX\_STANDARD 11)
 
 set(CMAKE\_CXX\_STANDARD\_REQUIRED ON)
 
-\# 生成可执行文件
+//生成可执行文件
 
 add\_executable(server server.cpp)  # 服务端可执行文件
 
 add\_executable(client client.cpp)  # 客户端可执行文件
 
-\# 链接线程库（Linux下多线程需链接pthread）
+//链接线程库（Linux下多线程需链接pthread）
 
 target\_link\_libraries(server pthread)
 
@@ -164,28 +164,28 @@ target\_link\_libraries(client pthread)
 
 
 * 操作系统：Ubuntu 24.04（或其他 Linux 发行版）
-
+* Cmake:3.28.3
 * 编译工具：g++
-* 依赖库：pthread（系统默认自带）
+* 依赖库：pthread
 
 ### 编译命令
 
 
 
 ```
-\# 进入作业目录
+//进入作业目录
 
 cd HomeWork2
 
-\# 创建构建目录（推荐，避免污染源码）
+//创建构建目录（推荐，避免污染源码）
 
 mkdir build && cd build
 
-\# 生成Makefile
+//生成Makefile
 
 cmake ..
 
-\# 编译（-j4 表示4线程加速，可选）
+//编译（-j4 表示4线程加速，可选）
 
 make -j4
 ```
@@ -236,8 +236,5 @@ cd HomeWork2/build
 
 2. 端口号固定为 9999，若端口被占用，可修改代码中 `htons(9999)` 为其他未占用端口（如 8888）
 
-3. 仅支持单客户端连接，如需多客户端可扩展服务端线程池或多路 IO 复用（select/poll/epoll）
-
-4. 消息长度限制为 1024 字节，可通过修改代码中 `buffer[1024]` 调整
 
 
