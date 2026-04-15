@@ -1,4 +1,4 @@
-#            一个基于OpenCV的图片显示Demo
+#            基于OpenCV的图片显示Demo
 
 ---
 ## 一、项目简介

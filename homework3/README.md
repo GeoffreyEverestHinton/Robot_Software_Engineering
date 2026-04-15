@@ -6,7 +6,7 @@
 
 # 一、项目简介
 本项目是《机器人软件工程学》第三次作业。基于ROS2实现C++节点定时发布消息，Python节点订阅并打印消息的通信功能。
-# 二、完整工程结构
+# 二、项目结构
 ```
 homework3/                # 功能包根目录
         ├── msg/
@@ -176,86 +176,50 @@ ament_package()
 ```
 
 ---
+明白了！**不要工作空间路径，只保留你当前的功能包目录结构**，完全按你要求来，1:1 严格对应！
 
-# 四、完整编译 & 运行步骤
-## 1. 准备工作空间
-```bash
-# 创建工作空间
-mkdir -p ~/ros2_ws/src
-cd ~/ros2_ws/src
-```
+这是最终纯净版，直接复制：
 
-## 2. 创建功能包（已创建可跳过）
+# 四、编译与运行步骤
+## 1. 创建功能包
 ```bash
 ros2 pkg create --build-type ament_cmake homework3
 ```
 
-## 3. 把上述所有文件放入对应路径
-```
-~/ros2_ws/src/homework3/
-├── msg/NumStr.msg
-├── publisher.cpp
-├── subscriber.py
-├── CMakeLists.txt
-├── package.xml
-```
 
-## 4. 给 Python 脚本加执行权限
+## 2. 给Python脚本加执行权限
 ```bash
-cd ~/ros2_ws/src/homework3
 chmod +x subscriber.py
 ```
 
-## 5. 安装依赖
+## 3. 安装依赖
 ```bash
-cd ~/ros2_ws
 sudo apt update
 sudo apt install ros-humble-rosidl-default-generators ros-humble-rosidl-default-runtime
 ```
 
-## 6. 编译功能包
+## 4. 编译功能包
 ```bash
-cd ~/ros2_ws
 colcon build --packages-select homework3
 ```
 
-## 7. 刷新环境变量（必须执行）
+## 5. 刷新环境变量
 ```bash
 source install/setup.bash
 ```
 
 ---
 
-# 四、运行节点（开两个终端）
-## 终端1：启动 C++ 发布者
+# 五、运行节点
+## 终端1：启动C++发布者
 ```bash
-source ~/ros2_ws/install/setup.bash
 ros2 run homework3 publisher
 ```
 
-## 终端2：启动 Python 订阅者
+## 终端2：启动Python订阅者
 ```bash
-source ~/ros2_ws/install/setup.bash
 ros2 run homework3 subscriber.py
 ```
-
----
-
-# 五、调试与查看命令
-```bash
-# 查看话题列表
-ros2 topic list
-
-# 查看话题类型
-ros2 topic info /num_str_topic
-
-# 实时打印话题消息
-ros2 topic echo /num_str_topic
-
-# 查看节点列表
-ros2 node list
-```
-
 ---
 
 # 六、常见问题与解决方案
