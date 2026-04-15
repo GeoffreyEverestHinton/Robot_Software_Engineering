@@ -313,6 +313,7 @@ ros2 run homework3 subscriber.py
 
 # 七、常见问题与解决方案
 1. 编译失败：找不到自定义消息/头文件
+
    解决方案：重新编译并刷新环境,确保消息生成生效
    ```bash
    colcon build --packages-select homework3
@@ -328,6 +329,7 @@ ros2 run homework3 subscriber.py
    ```
 
 4. C++与Python无法通信/收不到消息
+
    解决方案：
    - 确认消息类型一致：`homework3/msg/NumStr`
    - 两个终端都必须执行 `source install/setup.bash`
