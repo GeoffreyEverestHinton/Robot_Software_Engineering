@@ -71,7 +71,7 @@ target_link_libraries(main ${OpenCV_LIBS})
 | 文件名         | 功能说明               |
 |:---------------|:----------------------|
 | build/          | 编译产物存放目录       |
-| main.cpp        | 项目主程序（核心代码） |
+| main.cpp        | 项目主程序            |
 | CMakeLists.txt  | CMake编译配置文件      |
 | agi.jpg         | 测试图片文件           |
 

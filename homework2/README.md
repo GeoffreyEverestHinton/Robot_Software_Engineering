@@ -13,9 +13,9 @@
 ```
 homework2/
 
-├── server.cpp        # 服务端核心代码
+├── server.cpp        # 服务端代码
 
-├── client.cpp        # 客户端核心代码
+├── client.cpp        # 客户端代码
 
 ├── CMakeLists.txt    # 跨平台构建配置文件
 
@@ -38,24 +38,32 @@ homework2/
 
 ```
 // 服务端线程创建（server.cpp）
+// 创建接收线程，监听客户端消息
+thread t1(recv_msg, client_socket);  
 
-thread t1(recv\_msg, client\_socket);  // 接收消息线程
+// 创建发送线程，处理用户输入
+thread t2(send_msg, client_socket);  
 
-thread t2(send\_msg, client\_socket);  // 发送消息线程
+// 等待接收线程结束
+t1.join();  
 
-t1.join();  // 等待线程执行完成
-
-t2.join();
+// 等待发送线程结束
+t2.join();  
 
 // 客户端线程创建（client.cpp）
+// 创建接收线程，监听服务端消息
+thread t1(recv_msg, sock);  
 
-thread t1(recv\_msg, sock);  // 接收消息线程
+// 创建发送线程，处理用户输入
+thread t2(send_msg, sock);  
 
-thread t2(send\_msg, sock);  // 发送消息线程
+// 等待接收线程结束
+t1.join();  
 
-t1.join();
-
+// 等待发送线程结束
 t2.join();
+`
+
 ```
 
 ### 2.TCP Socket通信流程
@@ -94,36 +102,49 @@ t2.join();
 
 ```
 // 服务端 Socket 初始化（server.cpp）
+// 创建TCP套接字
+int server_fd = socket(AF_INET, SOCK_STREAM, 0);  
 
-int server\_fd = socket(AF\_INET, SOCK\_STREAM, 0);  // 创建TCP套接字
+// 定义地址结构体
+sockaddr_in addr{};  
 
-sockaddr\_in addr{};
+// 设置为IPv4协议
+addr.sin_family = AF_INET;  
 
-addr.sin\_family = AF\_INET;         // IPv4协议
+// 设置端口9999，转换为网络字节序
+addr.sin_port = htons(9999);  
 
-addr.sin\_port = htons(9999);       // 绑定9999端口（网络字节序）
+// 监听本机所有IP地址
+addr.sin_addr.s_addr = INADDR_ANY;  
 
-addr.sin\_addr.s\_addr = INADDR\_ANY; // 监听所有本地IP
+// 将套接字与IP、端口绑定
+bind(server_fd, (sockaddr *)&addr, sizeof(addr));  
 
-bind(server\_fd, (sockaddr \*)\&addr, sizeof(addr));  // 绑定
+// 开始监听，最大等待队列长度5
+listen(server_fd, 5);  
 
-listen(server\_fd, 5);             // 最大等待队列长度5
-
-int client\_socket = accept(server\_fd, nullptr, nullptr);  // 接受连接
+// 阻塞等待客户端连接
+int client_socket = accept(server_fd, nullptr, nullptr);  
 
 // 客户端 Socket 初始化（client.cpp）
+// 创建客户端TCP套接字
+int sock = socket(AF_INET, SOCK_STREAM, 0);  
 
-int sock = socket(AF\_INET, SOCK\_STREAM, 0);
+// 定义服务端地址结构体
+sockaddr_in addr{};  
 
-sockaddr\_in addr{};
+// 设置为IPv4协议
+addr.sin_family = AF_INET;  
 
-addr.sin\_family = AF\_INET;
+// 设置服务端端口9999
+addr.sin_port = htons(9999);  
 
-addr.sin\_port = htons(9999);
+// 设置服务端IP为本地回环
+inet_pton(AF_INET, "127.0.0.1", &addr.sin_addr);  
 
-inet\_pton(AF\_INET, "127.0.0.1", \&addr.sin\_addr);  // 连接本地服务端
+// 主动连接服务端
+connect(sock, (sockaddr *)&addr, sizeof(addr));  
 
-connect(sock, (sockaddr \*)\&addr, sizeof(addr));   // 发起连接
 ```
 
 ### 3.CMake 构建配置（CMakeLists.txt）
@@ -131,31 +152,30 @@ connect(sock, (sockaddr \*)\&addr, sizeof(addr));   // 发起连接
 
 
 ```
-//最低CMake版本要求
+# 指定CMake最低版本要求
+cmake_minimum_required(VERSION 3.10)
 
-cmake\_minimum\_required(VERSION 3.10)
-
-//项目名称
-
+# 定义项目名称
 project(ChatSystem)
 
-//指定C++标准（C++11支持std::thread）
+# 设置C++语言标准为C++11
+set(CMAKE_CXX_STANDARD 11)
 
-set(CMAKE\_CXX\_STANDARD 11)
+# 强制要求C++11标准，不满足则编译失败
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE\_CXX\_STANDARD\_REQUIRED ON)
+# 编译生成服务端可执行文件 server
+add_executable(server server.cpp)
 
-//生成可执行文件
+# 编译生成客户端可执行文件 client
+add_executable(client client.cpp)
 
-add\_executable(server server.cpp)  # 服务端可执行文件
+# 为服务端链接多线程库
+target_link_libraries(server pthread)
 
-add\_executable(client client.cpp)  # 客户端可执行文件
+# 为客户端链接多线程库
+target_link_libraries(client pthread)
 
-//链接线程库（Linux下多线程需链接pthread）
-
-target\_link\_libraries(server pthread)
-
-target\_link\_libraries(client pthread)
 ```
 
 ## 四、编译与运行步骤
