@@ -1,5 +1,6 @@
-# RobotSoftwareEngineering作业仓库
-![Hi Welcome](https://readme-typing-svg.herokuapp.com/?lines=Hi,welcome+to+my+repo!;&font=Source+Code+Pro)
+# RoboticsSoftwareEngineering作业仓库
+![Typing SVG](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=22&duration=3000&pause=2500&color=2196F3&center=true&vCenter=true&width=700&height=80&lines=HI%2C+Welcome+to+my+repo;This+is+my+course+assignment+repository+for+Robotics+Software+Engineering)
+
 本仓库用于存放《机器人软件工程学》课程的所有作业，每个作业均附README.md文件，便于查看与验收
 
 
@@ -18,5 +19,7 @@
 * 姓名：火生旺
 
 * 学号：2313371
+
+* 邮箱：2313371@mail.nankai.edu.cn
 
 
