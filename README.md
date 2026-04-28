@@ -1,5 +1,5 @@
 # RoboticsSoftwareEngineering作业仓库
-![Typing](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=20&duration=4000&pause=2800&color=2196F3&center=true&vCenter=true&width=800&height=100&lines=Hi%2C+Welcome+to+my+repo！;This+is+my+assignment+for+Robotics+Software+Engineering+course)
+![Typing](https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=19&duration=3500&pause=2500&color=2196F3&center=true&vCenter=true&fixed=true&width=850&height=110&lines=Hi%2C+Welcome+to+my+repository;This+is+my+course+repo+for+Robotics+Software+Engineering)
 
 本仓库用于存放《机器人软件工程学》课程的所有作业，每个作业均附README.md文件，便于查看与验收
 
